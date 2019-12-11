@@ -1,0 +1,16 @@
+PODS:
+  - SwiftFunnyAnimations (0.1.0)
+
+DEPENDENCIES:
+  - SwiftFunnyAnimations (from `../`)
+
+EXTERNAL SOURCES:
+  SwiftFunnyAnimations:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SwiftFunnyAnimations: d07bc1de2691b3ef30d8f900a09adc56c9e9bd39
+
+PODFILE CHECKSUM: b437919eae3b69fc9bf20c80f0c5d5c77341fa27
+
+COCOAPODS: 1.8.4
