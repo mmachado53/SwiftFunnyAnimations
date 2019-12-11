@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SwiftFunnyAnimations_Example' do
+  pod 'SwiftFunnyAnimations', :path => '../'
+
+  target 'SwiftFunnyAnimations_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
