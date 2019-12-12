@@ -113,7 +113,22 @@ public class FunnyAnimations{
             let rotation = imageView.transform.rotated(by: radians)
             imageView.transform = rotation
             
-            let initialPoint:CGPoint = CGPoint(x: CGFloat(drand48()) * rootView.frame.width, y: -50)
+            
+            let initialPoint:CGPoint
+            switch direction{
+            case .downToTop:
+                initialPoint = CGPoint(x: CGFloat(drand48()) * rootView.frame.width, y: rootView.frame.height + 50)
+                break
+            case .leftToRight:
+                initialPoint = CGPoint(x: -50, y: CGFloat(drand48()) * rootView.frame.height)
+                break
+            case .rightToLeft:
+                initialPoint = CGPoint(x: rootView.frame.width + 50, y: CGFloat(drand48()) * rootView.frame.height)
+                break
+            default:
+                initialPoint = CGPoint(x: CGFloat(drand48()) * rootView.frame.width, y: -50)
+                
+            }
             
             animation.delegate = AnimationDelegate(imageView)
             
