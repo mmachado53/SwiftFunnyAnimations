@@ -92,28 +92,32 @@ public class FunnyAnimations{
         self.particlesSprites.removeAll()
     }
     
-    
-    public func startWaveRain(total:Int,direction:Direction,sizeVariation:CGFloat){
-        if self.totalParticlesTypes <= 0 {return}
-        for i in 1...total{
-            let randomParticlesViewsIndex = Int(round( drand48() * Double(self.particlesSprites.count - 1)))
-            let sprite:UIImage = self.particlesSprites[randomParticlesViewsIndex]
-            let imageView:UIImageView = UIImageView(image: sprite)
-            imageView.tintColor = self.particlesSpritesTints[randomParticlesViewsIndex]
-            //let initialViewSize:CGSize = self.particlesViewsSizes[randomParticlesViewsIndex]
-            let size = randomScaleSize(for: imageView.frame.size, sizeVariation: sizeVariation)
-            
-    
-            let animation:CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "position")
-            
-            imageView.frame = CGRect(x: -size.width, y: -size.height, width: size.width, height: size.height)
-            
+    private func getRandomParticle(sizeVariation:CGFloat,randomRotation:Bool) -> UIImageView{
+        let randomParticlesViewsIndex = Int(round( drand48() * Double(self.particlesSprites.count - 1)))
+        let sprite:UIImage = self.particlesSprites[randomParticlesViewsIndex]
+        let imageView:UIImageView = UIImageView(image: sprite)
+        imageView.tintColor = self.particlesSpritesTints[randomParticlesViewsIndex]
+        let size = randomScaleSize(for: imageView.frame.size, sizeVariation: sizeVariation)
+        imageView.frame = CGRect(x: -size.width, y: -size.height, width: size.width, height: size.height)
+        
+        if randomRotation {
             let degrees = CGFloat(drand48() * 180)
             let radians = degrees / 180.0 * CGFloat.pi
             let rotation = imageView.transform.rotated(by: radians)
             imageView.transform = rotation
+        }
+        return imageView
+    }
+    
+    public func startWaveRain(total:Int,direction:Direction,sizeVariation:CGFloat,randomRotation:Bool){
+        if self.totalParticlesTypes <= 0 {return}
+        
+        for _ in 1...total{
+    
+            let imageView:UIImageView = getRandomParticle(sizeVariation: sizeVariation, randomRotation: randomRotation )
             
-            
+            let animation:CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "position")
+    
             let initialPoint:CGPoint
             switch direction{
             case .downToTop:
@@ -142,9 +146,52 @@ public class FunnyAnimations{
         }
     }
     
+    public func startWave(from view:UIView,total:Int,direction:Direction,sizeVariation:CGFloat,randomRotation:Bool){
+        let localPoint:CGPoint = CGPoint(x:view.frame.width / 2,y: view.frame.height / 2)
+        let globalPoint = view.convert(localPoint, to: self.rootView)
+        self.startWave(from: globalPoint, total: total, direction: direction, sizeVariation: sizeVariation, randomRotation: randomRotation)
+    }
+    
+    public func startWave(from point:CGPoint,total:Int,direction:Direction,sizeVariation:CGFloat,randomRotation:Bool){
+        if self.totalParticlesTypes <= 0 {return}
+        for _ in 1...total{
+            
+            let imageView:UIImageView = getRandomParticle(sizeVariation: sizeVariation,randomRotation: randomRotation)
+            
+            let animation:CAKeyframeAnimation = CAKeyframeAnimation(keyPath: "position")
+            
+            let distance:CGFloat
+            switch direction{
+            case .downToTop:
+                distance = point.y + imageView.frame.height / 2
+                break
+            case .leftToRight:
+                distance = self.rootView.frame.width - point.x + imageView.frame.width / 2
+                break
+            case .rightToLeft:
+                distance = point.x + imageView.frame.width / 2
+                break
+            default:
+                distance = self.rootView.frame.height - point.y + imageView.frame.height / 2
+                
+            }
+            
+            animation.delegate = AnimationDelegate(imageView)
+            
+            animation.path = FunnyAnimations.buildWaveAnimationPath(initialPoint: point, distance: distance, direction: direction,onlyOneSide: true).cgPath
+            animation.duration = 1 + drand48() * 2
+            animation.fillMode = kCAFillModeForwards
+            animation.isRemovedOnCompletion = true
+            animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            imageView.layer.add(animation, forKey: nil)
+            self.rootView.addSubview(imageView)
+        }
+    }
+    
     private static func buildLeftToRightAnimationPath(
         initialPoint:CGPoint,
-        distance:CGFloat
+        distance:CGFloat,
+        onlyOneSide:Bool = false
         ) -> UIBezierPath {
         let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .leftToRight)
         let path:UIBezierPath = UIBezierPath()
@@ -152,7 +199,7 @@ public class FunnyAnimations{
         let randomCurve:CGFloat = CGFloat(100 + drand48() * 200)
         let cp1:CGPoint
         let cp2:CGPoint
-        if drand48() < 0.5{
+        if drand48() < 0.5 || onlyOneSide{
             cp1 = CGPoint(x: initialPoint.x + distance * 0.25, y: initialPoint.y + randomCurve)
             cp2 = CGPoint(x: initialPoint.x + distance * 0.50, y: initialPoint.y - randomCurve)
         }else{
@@ -165,7 +212,8 @@ public class FunnyAnimations{
     
     private static func buildRightToLeftAnimationPath(
         initialPoint:CGPoint,
-        distance:CGFloat
+        distance:CGFloat,
+        onlyOneSide:Bool = false
         ) -> UIBezierPath {
         let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .rightToLeft)
         let path:UIBezierPath = UIBezierPath()
@@ -173,7 +221,7 @@ public class FunnyAnimations{
         let randomCurve:CGFloat = CGFloat(100 + drand48() * 200)
         let cp1:CGPoint
         let cp2:CGPoint
-        if drand48() < 0.5{
+        if drand48() < 0.5 || onlyOneSide{
             cp1 = CGPoint(x: initialPoint.x - distance * 0.25, y: initialPoint.y + randomCurve)
             cp2 = CGPoint(x: initialPoint.x - distance * 0.50, y: initialPoint.y - randomCurve)
         }else{
@@ -186,7 +234,8 @@ public class FunnyAnimations{
     
     private static func buildTopToDownAnimationPath(
         initialPoint:CGPoint,
-        distance:CGFloat
+        distance:CGFloat,
+        onlyOneSide:Bool = false
         ) -> UIBezierPath {
         let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .topToDown)
         let path:UIBezierPath = UIBezierPath()
@@ -194,7 +243,7 @@ public class FunnyAnimations{
         let randomCurve:CGFloat = CGFloat(100 + drand48() * 200)
         let cp1:CGPoint
         let cp2:CGPoint
-        if drand48() < 0.5{
+        if drand48() < 0.5 || onlyOneSide{
             cp1 = CGPoint(x: initialPoint.x + randomCurve, y: initialPoint.y + distance * 0.25)
             cp2 = CGPoint(x: initialPoint.x - randomCurve, y: initialPoint.y + distance * 0.50)
         }else{
@@ -207,7 +256,8 @@ public class FunnyAnimations{
     
     private static func buildDownToTopAnimationPath(
         initialPoint:CGPoint,
-        distance:CGFloat
+        distance:CGFloat,
+        onlyOneSide:Bool = false
         ) -> UIBezierPath {
         let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .downToTop)
         let path:UIBezierPath = UIBezierPath()
@@ -215,7 +265,7 @@ public class FunnyAnimations{
         let randomCurve:CGFloat = CGFloat(100 + drand48() * 200)
         let cp1:CGPoint
         let cp2:CGPoint
-        if drand48() < 0.5{
+        if drand48() < 0.5 || onlyOneSide{
             cp1 = CGPoint(x: initialPoint.x + randomCurve, y: initialPoint.y - distance * 0.25)
             cp2 = CGPoint(x: initialPoint.x - randomCurve, y: initialPoint.y - distance * 0.50)
         }else{
@@ -229,17 +279,18 @@ public class FunnyAnimations{
     private static func buildWaveAnimationPath(
         initialPoint:CGPoint,
         distance:CGFloat,
-        direction:FunnyAnimations.Direction
+        direction:FunnyAnimations.Direction,
+        onlyOneSide:Bool = false
         ) -> UIBezierPath {
         switch direction {
         case .downToTop:
-            return buildDownToTopAnimationPath(initialPoint: initialPoint, distance: distance)
+            return buildDownToTopAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide )
         case .leftToRight:
-            return buildLeftToRightAnimationPath(initialPoint: initialPoint, distance: distance)
+            return buildLeftToRightAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide)
         case .rightToLeft:
-            return buildRightToLeftAnimationPath(initialPoint: initialPoint, distance: distance)
+            return buildRightToLeftAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide)
         default:
-            return buildTopToDownAnimationPath(initialPoint: initialPoint, distance: distance)
+            return buildTopToDownAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide)
         }
     }
 

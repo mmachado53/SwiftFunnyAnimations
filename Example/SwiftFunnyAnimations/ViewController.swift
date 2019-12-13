@@ -11,6 +11,7 @@ import SwiftFunnyAnimations
 class ViewController: UIViewController {
     
     var funnyAnimation:FunnyAnimations!
+    var funnyAnimation2:FunnyAnimations!
     let heartIcon:UIImage = UIImage(named: "heart_icon")!
     let likeIcon:UIImage = UIImage(named: "like_icon")!
     let color1:UIColor = UIColor(red: 1 / 255, green: 131 / 255, blue: 131 / 255, alpha: 1)
@@ -30,14 +31,15 @@ class ViewController: UIViewController {
         //self.view.backgroundColor = UIColor(red: 1, green: 55 / 255, blue: 93 / 255, alpha: 1)
          self.view.backgroundColor = UIColor(red: 53 / 255, green: 71 / 255, blue: 125 / 255, alpha: 1)
         self.funnyAnimation = FunnyAnimations(rootview: self.view)
+        self.funnyAnimation2 = FunnyAnimations(rootview: self.view)
         let shapes:[FunnyAnimations.Shape] = [.circle,.square,.triangle]
         let colors:[UIColor] = [UIColor.red,UIColor.green,UIColor.blue]
-        self.funnyAnimation.appendParticles(from: shapes, size: 20, colors: [
+        self.funnyAnimation2.appendParticles(from: shapes, size: 20, colors: [
             color5,
             color6,
             color7
             ])
-        //self.funnyAnimation.appendParticles(from: [likeIcon,heartIcon])
+        self.funnyAnimation.appendParticles(from: [likeIcon,heartIcon])
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -50,8 +52,9 @@ class ViewController: UIViewController {
     @IBAction func pressButtonAction(_ sender : UIButton){
         //self.funnyAnimation.startWaveRain(total: 5, direction: .leftToRight, sizeVariation: 0.5)
         //self.funnyAnimation.startWaveRain(total: 5, direction: .rightToLeft, sizeVariation: 0.5)
-        self.funnyAnimation.startWaveRain(total: 50, direction: .topToDown, sizeVariation: 0.5)
+        self.funnyAnimation2.startWaveRain(total: 50, direction: .topToDown, sizeVariation: 0.5, randomRotation: true)
         //self.funnyAnimation.startWaveRain(total: 5, direction: .downToTop, sizeVariation: 0.5)
+        self.funnyAnimation.startWave(from: sender, total: 20, direction: .downToTop, sizeVariation: 0.5, randomRotation: false)
     }
     
     
