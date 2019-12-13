@@ -10,13 +10,20 @@ import UIKit
 
 public class FunnyAnimations{
     
-    //private let window:UIWindow
+    /// The view where the particles are added, can be a window
     private let rootView:UIView
     
+    /**
+     Initialize instance of FunnyAnimations.
+     - Parameters:
+     - rootview: The view where the particles are added, can be a window
+     - Returns: A FunnyAnimations instanse.
+     */
     public required init(rootview:UIView){
         self.rootView = rootview
     }
     
+    // MARK: Enums
     public enum Direction{
         case topToDown
         case downToTop
@@ -29,24 +36,35 @@ public class FunnyAnimations{
         case triangle
     }
     
+    
+    // MARK: Default static values
     private static let defaultColors:[UIColor] = [
         UIColor.red,
         UIColor.blue
     ]
-    
     private static let defaultSize:CGFloat = 10
     
+    
+    // MARK: Private vars
     private var particlesSprites : [UIImage] = []
     private var particlesSpritesTints : [UIColor?] = []
-    //private var particlesViews : [UIView] = []
-    //private var particlesViewsSizes : [CGSize] = []
     
+    /// Total of particles types
     public var totalParticlesTypes:Int {
         get{
             return self.particlesSprites.count
         }
     }
     
+    // MARK: Public Methods
+    
+    /**
+     Build and append shape particles (triangles, squares and circles) .
+     - Parameters:
+     - shapes:  shapes to build
+     - size:    default size for the particles, default is 10
+     - colors:  Color of particles default is [UIcolor.red,UIColor.blue]
+     */
     public func appendParticles(from shapes:[FunnyAnimations.Shape],size:CGFloat? = nil, colors:[UIColor]? = nil){
         
         let colors = colors == nil ? FunnyAnimations.defaultColors : colors!
@@ -71,6 +89,12 @@ public class FunnyAnimations{
         
     }
     
+    /**
+     Append particles from UIImage instances.
+     - Parameters:
+     - images:      array of UIImage´s
+     - tintColors:  Optional
+     */
     public func appendParticles(from images:[UIImage],tintColors:[UIColor] = []){
         images.forEach({ (image) in
             if tintColors.count == 0 {
@@ -87,28 +111,22 @@ public class FunnyAnimations{
         })
     }
     
+    /**
+     Clear all particles.
+     */
     public func clearParticlesTypes(){
         self.particlesSpritesTints.removeAll()
         self.particlesSprites.removeAll()
     }
     
-    private func getRandomParticle(sizeVariation:CGFloat,randomRotation:Bool) -> UIImageView{
-        let randomParticlesViewsIndex = Int(round( drand48() * Double(self.particlesSprites.count - 1)))
-        let sprite:UIImage = self.particlesSprites[randomParticlesViewsIndex]
-        let imageView:UIImageView = UIImageView(image: sprite)
-        imageView.tintColor = self.particlesSpritesTints[randomParticlesViewsIndex]
-        let size = randomScaleSize(for: imageView.frame.size, sizeVariation: sizeVariation)
-        imageView.frame = CGRect(x: -size.width, y: -size.height, width: size.width, height: size.height)
-        
-        if randomRotation {
-            let degrees = CGFloat(drand48() * 180)
-            let radians = degrees / 180.0 * CGFloat.pi
-            let rotation = imageView.transform.rotated(by: radians)
-            imageView.transform = rotation
-        }
-        return imageView
-    }
-    
+    /**
+     Start a "WaveRain" animation. a rain of particles will fall from one side of the rootView to the other
+     - Parameters:
+     - total:           total of particles in animation
+     - direction:       can be .topToDown .downToTop .leftToRight .rightToLeft
+     - sizeVariation:   0 = no variation, 0.5 the particles will appear from 50% to 150% of their original size
+     - randomRotation:  if is true the particles will appear with random rotation values
+     */
     public func startWaveRain(total:Int,direction:Direction,sizeVariation:CGFloat,randomRotation:Bool){
         if self.totalParticlesTypes <= 0 {return}
         
@@ -146,12 +164,30 @@ public class FunnyAnimations{
         }
     }
     
+    /**
+     Start a "Wave" animation. the particles will appear from the center of the view to one of the edges of the rootView
+     - Parameters:
+     - view:            Is the view from where the particles appear
+     - total:           total of particles in animation
+     - direction:       can be .topToDown .downToTop .leftToRight .rightToLeft
+     - sizeVariation:   0 = no variation, 0.5 the particles will appear from 50% to 150% of their original size
+     - randomRotation:  if is true the particles will appear with random rotation values
+     */
     public func startWave(from view:UIView,total:Int,direction:Direction,sizeVariation:CGFloat,randomRotation:Bool){
         let localPoint:CGPoint = CGPoint(x:view.frame.width / 2,y: view.frame.height / 2)
         let globalPoint = view.convert(localPoint, to: self.rootView)
         self.startWave(from: globalPoint, total: total, direction: direction, sizeVariation: sizeVariation, randomRotation: randomRotation)
     }
     
+    /**
+     Start a "Wave" animation. the particles will appear from one point to one of the edges of the rootView
+     - Parameters:
+     - point:           point from where the particles appear
+     - total:           total of particles in animation
+     - direction:       can be .topToDown .downToTop .leftToRight .rightToLeft
+     - sizeVariation:   0 = no variation, 0.5 the particles will appear from 50% to 150% of their original size
+     - randomRotation:  if is true the particles will appear with random rotation values
+     */
     public func startWave(from point:CGPoint,total:Int,direction:Direction,sizeVariation:CGFloat,randomRotation:Bool){
         if self.totalParticlesTypes <= 0 {return}
         for _ in 1...total{
@@ -186,6 +222,32 @@ public class FunnyAnimations{
             imageView.layer.add(animation, forKey: nil)
             self.rootView.addSubview(imageView)
         }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /**
+     Return a random particle from particlesSprites array
+     - Parameters:
+     - sizeVariation:   0 = no variation, 0.5 the particles will appear from 50% to 150% of their original size
+     - randomRotation:  if is true the particles will appear with random rotation values
+     */
+    private func getRandomParticle(sizeVariation:CGFloat,randomRotation:Bool) -> UIImageView{
+        let randomParticlesViewsIndex = Int(round( drand48() * Double(self.particlesSprites.count - 1)))
+        let sprite:UIImage = self.particlesSprites[randomParticlesViewsIndex]
+        let imageView:UIImageView = UIImageView(image: sprite)
+        imageView.tintColor = self.particlesSpritesTints[randomParticlesViewsIndex]
+        let size = randomScaleSize(for: imageView.frame.size, sizeVariation: sizeVariation)
+        imageView.frame = CGRect(x: -size.width, y: -size.height, width: size.width, height: size.height)
+        
+        if randomRotation {
+            let degrees = CGFloat(drand48() * 180)
+            let radians = degrees / 180.0 * CGFloat.pi
+            let rotation = imageView.transform.rotated(by: radians)
+            imageView.transform = rotation
+        }
+        return imageView
     }
     
     private static func buildLeftToRightAnimationPath(
@@ -297,6 +359,7 @@ public class FunnyAnimations{
 
     
 }
+// MARK: AnimationDelegate
 
 private class AnimationDelegate:NSObject,CAAnimationDelegate{
     var view:UIView
@@ -313,6 +376,7 @@ private class AnimationDelegate:NSObject,CAAnimationDelegate{
     }
 }
 
+// MARK: Helpers functions
 
 fileprivate func getEndPoint(from initialPoint:CGPoint,distance:CGFloat,direction:FunnyAnimations.Direction)->CGPoint{
     switch direction {
