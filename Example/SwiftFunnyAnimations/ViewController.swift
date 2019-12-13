@@ -11,11 +11,33 @@ import SwiftFunnyAnimations
 class ViewController: UIViewController {
     
     var funnyAnimation:FunnyAnimations!
+    let heartIcon:UIImage = UIImage(named: "heart_icon")!
+    let likeIcon:UIImage = UIImage(named: "like_icon")!
+    let color1:UIColor = UIColor(red: 1 / 255, green: 131 / 255, blue: 131 / 255, alpha: 1)
+    let color2:UIColor = UIColor(red: 2 / 255, green: 168 / 255, blue: 168 / 255, alpha: 1)
+    let color3:UIColor = UIColor(red: 66 / 255, green: 230 / 255, blue: 164 / 255, alpha: 1)
+    let color4:UIColor = UIColor(red: 245 / 255, green: 222 / 255, blue: 163 / 255, alpha: 1)
+    
+    
+    
+    let color5:UIColor = UIColor(red: 246 / 255, green: 114 / 255, blue: 128 / 255, alpha: 1)
+    let color6:UIColor = UIColor(red: 192 / 255, green: 108 / 255, blue: 132 / 255, alpha: 1)
+    let color7:UIColor = UIColor(red: 108 / 255, green: 91 / 255, blue: 123 / 255, alpha: 1)
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.view.backgroundColor = UIColor(red: 1, green: 55 / 255, blue: 93 / 255, alpha: 1)
+         self.view.backgroundColor = UIColor(red: 53 / 255, green: 71 / 255, blue: 125 / 255, alpha: 1)
         self.funnyAnimation = FunnyAnimations(rootview: self.view)
-        funnyAnimation.appendParticles(from: [FunnyAnimations.Shape.circle,FunnyAnimations.Shape.triangle,.square], size: 20, colors: nil)
+        let shapes:[FunnyAnimations.Shape] = [.circle,.square,.triangle]
+        let colors:[UIColor] = [UIColor.red,UIColor.green,UIColor.blue]
+        self.funnyAnimation.appendParticles(from: shapes, size: 20, colors: [
+            color5,
+            color6,
+            color7
+            ])
+        //self.funnyAnimation.appendParticles(from: [likeIcon,heartIcon])
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -26,7 +48,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressButtonAction(_ sender : UIButton){
-        funnyAnimation.startWaveRain(total: 10, direction: .topToDown, sizeVariation: 0.5)
+        //self.funnyAnimation.startWaveRain(total: 5, direction: .leftToRight, sizeVariation: 0.5)
+        //self.funnyAnimation.startWaveRain(total: 5, direction: .rightToLeft, sizeVariation: 0.5)
+        self.funnyAnimation.startWaveRain(total: 50, direction: .topToDown, sizeVariation: 0.5)
+        //self.funnyAnimation.startWaveRain(total: 5, direction: .downToTop, sizeVariation: 0.5)
     }
     
     

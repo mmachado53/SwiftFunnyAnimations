@@ -96,7 +96,7 @@ public class FunnyAnimations{
     public func startWaveRain(total:Int,direction:Direction,sizeVariation:CGFloat){
         if self.totalParticlesTypes <= 0 {return}
         for i in 1...total{
-            let randomParticlesViewsIndex = Int( 0 + drand48() * Double(self.particlesSprites.count - 1))
+            let randomParticlesViewsIndex = Int(round( drand48() * Double(self.particlesSprites.count - 1)))
             let sprite:UIImage = self.particlesSprites[randomParticlesViewsIndex]
             let imageView:UIImageView = UIImageView(image: sprite)
             imageView.tintColor = self.particlesSpritesTints[randomParticlesViewsIndex]
@@ -113,7 +113,22 @@ public class FunnyAnimations{
             let rotation = imageView.transform.rotated(by: radians)
             imageView.transform = rotation
             
-            let initialPoint:CGPoint = CGPoint(x: CGFloat(drand48()) * rootView.frame.width, y: -50)
+            
+            let initialPoint:CGPoint
+            switch direction{
+            case .downToTop:
+                initialPoint = CGPoint(x: CGFloat(drand48()) * rootView.frame.width, y: rootView.frame.height + 50)
+                break
+            case .leftToRight:
+                initialPoint = CGPoint(x: -50, y: CGFloat(drand48()) * rootView.frame.height)
+                break
+            case .rightToLeft:
+                initialPoint = CGPoint(x: rootView.frame.width + 50, y: CGFloat(drand48()) * rootView.frame.height)
+                break
+            default:
+                initialPoint = CGPoint(x: CGFloat(drand48()) * rootView.frame.width, y: -50)
+                
+            }
             
             animation.delegate = AnimationDelegate(imageView)
             
