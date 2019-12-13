@@ -25,10 +25,10 @@ public class FunnyAnimations{
     
     // MARK: Enums
     public enum Direction{
-        case topToDown
-        case downToTop
-        case leftToRight
-        case rightToLeft
+        case toDown
+        case toTop
+        case toRight
+        case toLeft
     }
     public enum Shape{
         case square
@@ -123,7 +123,7 @@ public class FunnyAnimations{
      Start a "WaveRain" animation. a rain of particles will fall from one side of the rootView to the other
      - Parameters:
      - total:           total of particles in animation
-     - direction:       can be .topToDown .downToTop .leftToRight .rightToLeft
+     - direction:       can be .toDown .toTop .toRight .toLeft
      - sizeVariation:   0 = no variation, 0.5 the particles will appear from 50% to 150% of their original size
      - randomRotation:  if is true the particles will appear with random rotation values
      */
@@ -138,13 +138,13 @@ public class FunnyAnimations{
     
             let initialPoint:CGPoint
             switch direction{
-            case .downToTop:
+            case .toTop:
                 initialPoint = CGPoint(x: CGFloat(drand48()) * rootView.frame.width, y: rootView.frame.height + 50)
                 break
-            case .leftToRight:
+            case .toRight:
                 initialPoint = CGPoint(x: -50, y: CGFloat(drand48()) * rootView.frame.height)
                 break
-            case .rightToLeft:
+            case .toLeft:
                 initialPoint = CGPoint(x: rootView.frame.width + 50, y: CGFloat(drand48()) * rootView.frame.height)
                 break
             default:
@@ -169,7 +169,7 @@ public class FunnyAnimations{
      - Parameters:
      - view:            Is the view from where the particles appear
      - total:           total of particles in animation
-     - direction:       can be .topToDown .downToTop .leftToRight .rightToLeft
+     - direction:       can be .toDown .toTop .toRight .toLeft
      - sizeVariation:   0 = no variation, 0.5 the particles will appear from 50% to 150% of their original size
      - randomRotation:  if is true the particles will appear with random rotation values
      */
@@ -184,7 +184,7 @@ public class FunnyAnimations{
      - Parameters:
      - point:           point from where the particles appear
      - total:           total of particles in animation
-     - direction:       can be .topToDown .downToTop .leftToRight .rightToLeft
+     - direction:       can be .toDown .toTop .toRight .toLeft
      - sizeVariation:   0 = no variation, 0.5 the particles will appear from 50% to 150% of their original size
      - randomRotation:  if is true the particles will appear with random rotation values
      */
@@ -198,13 +198,13 @@ public class FunnyAnimations{
             
             let distance:CGFloat
             switch direction{
-            case .downToTop:
+            case .toTop:
                 distance = point.y + imageView.frame.height / 2
                 break
-            case .leftToRight:
+            case .toRight:
                 distance = self.rootView.frame.width - point.x + imageView.frame.width / 2
                 break
-            case .rightToLeft:
+            case .toLeft:
                 distance = point.x + imageView.frame.width / 2
                 break
             default:
@@ -250,12 +250,12 @@ public class FunnyAnimations{
         return imageView
     }
     
-    private static func buildLeftToRightAnimationPath(
+    private static func buildToRightAnimationPath(
         initialPoint:CGPoint,
         distance:CGFloat,
         onlyOneSide:Bool = false
         ) -> UIBezierPath {
-        let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .leftToRight)
+        let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .toRight)
         let path:UIBezierPath = UIBezierPath()
         path.move(to: initialPoint)
         let randomCurve:CGFloat = CGFloat(100 + drand48() * 200)
@@ -272,12 +272,12 @@ public class FunnyAnimations{
         return path
     }
     
-    private static func buildRightToLeftAnimationPath(
+    private static func buildToLeftAnimationPath(
         initialPoint:CGPoint,
         distance:CGFloat,
         onlyOneSide:Bool = false
         ) -> UIBezierPath {
-        let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .rightToLeft)
+        let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .toLeft)
         let path:UIBezierPath = UIBezierPath()
         path.move(to: initialPoint)
         let randomCurve:CGFloat = CGFloat(100 + drand48() * 200)
@@ -294,12 +294,12 @@ public class FunnyAnimations{
         return path
     }
     
-    private static func buildTopToDownAnimationPath(
+    private static func buildToDownAnimationPath(
         initialPoint:CGPoint,
         distance:CGFloat,
         onlyOneSide:Bool = false
         ) -> UIBezierPath {
-        let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .topToDown)
+        let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .toDown)
         let path:UIBezierPath = UIBezierPath()
         path.move(to: initialPoint)
         let randomCurve:CGFloat = CGFloat(100 + drand48() * 200)
@@ -316,12 +316,12 @@ public class FunnyAnimations{
         return path
     }
     
-    private static func buildDownToTopAnimationPath(
+    private static func buildToTopAnimationPath(
         initialPoint:CGPoint,
         distance:CGFloat,
         onlyOneSide:Bool = false
         ) -> UIBezierPath {
-        let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .downToTop)
+        let endPoint:CGPoint = getEndPoint(from: initialPoint, distance: distance, direction: .toTop)
         let path:UIBezierPath = UIBezierPath()
         path.move(to: initialPoint)
         let randomCurve:CGFloat = CGFloat(100 + drand48() * 200)
@@ -345,14 +345,14 @@ public class FunnyAnimations{
         onlyOneSide:Bool = false
         ) -> UIBezierPath {
         switch direction {
-        case .downToTop:
-            return buildDownToTopAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide )
-        case .leftToRight:
-            return buildLeftToRightAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide)
-        case .rightToLeft:
-            return buildRightToLeftAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide)
+        case .toTop:
+            return buildToTopAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide )
+        case .toRight:
+            return buildToRightAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide)
+        case .toLeft:
+            return buildToLeftAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide)
         default:
-            return buildTopToDownAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide)
+            return buildToDownAnimationPath(initialPoint: initialPoint, distance: distance, onlyOneSide:onlyOneSide)
         }
     }
 
@@ -380,11 +380,11 @@ private class AnimationDelegate:NSObject,CAAnimationDelegate{
 
 fileprivate func getEndPoint(from initialPoint:CGPoint,distance:CGFloat,direction:FunnyAnimations.Direction)->CGPoint{
     switch direction {
-    case .downToTop:
+    case .toTop:
         return CGPoint(x: initialPoint.x, y: initialPoint.y - distance)
-    case .leftToRight:
+    case .toRight:
         return CGPoint(x: initialPoint.x + distance, y: initialPoint.y)
-    case .rightToLeft:
+    case .toLeft:
         return CGPoint(x: initialPoint.x - distance, y: initialPoint.y)
     default:
         return CGPoint(x: initialPoint.x, y: initialPoint.y + distance)
