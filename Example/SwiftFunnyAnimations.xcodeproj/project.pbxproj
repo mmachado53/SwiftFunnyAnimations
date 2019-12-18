@@ -46,7 +46,7 @@
 		B51B54B1F01C6F7396E3E852 /* Pods-SwiftFunnyAnimations_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFunnyAnimations_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftFunnyAnimations_Tests/Pods-SwiftFunnyAnimations_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D3803B78DC89718B38172E9D /* Pods_SwiftFunnyAnimations_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFunnyAnimations_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFE00AD2A0AB32828D2A579B /* Pods-SwiftFunnyAnimations_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFunnyAnimations_Example.release.xcconfig"; path = "Target Support Files/Pods-SwiftFunnyAnimations_Example/Pods-SwiftFunnyAnimations_Example.release.xcconfig"; sourceTree = "<group>"; };
-		E5C9230D7031340A9A37AFCD /* SwiftFunnyAnimations.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwiftFunnyAnimations.podspec; path = ../SwiftFunnyAnimations.podspec; sourceTree = "<group>"; };
+		E5C9230D7031340A9A37AFCD /* SwiftFunnyAnimations.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwiftFunnyAnimations.podspec; path = ../SwiftFunnyAnimations.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
