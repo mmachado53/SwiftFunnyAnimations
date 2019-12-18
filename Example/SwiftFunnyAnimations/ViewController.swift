@@ -10,6 +10,14 @@ import UIKit
 import SwiftFunnyAnimations
 class ViewController: UIViewController {
     
+    var  allShapesAnimation : FunnyAnimations!
+    var  trianglesAnimation : FunnyAnimations!
+    var  circlesAnimation : FunnyAnimations!
+    var  squaresAnimation : FunnyAnimations!
+    var  bitmapsAnimation : FunnyAnimations!
+    
+    
+    
     var funnyAnimation:FunnyAnimations!
     var funnyAnimation2:FunnyAnimations!
     let heartIcon:UIImage = UIImage(named: "heart_icon")!
@@ -28,33 +36,79 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        
+        self.allShapesAnimation = FunnyAnimations(rootview: self.view)
+        self.trianglesAnimation = FunnyAnimations(rootview: self.view)
+        self.circlesAnimation = FunnyAnimations(rootview: self.view)
+        self.bitmapsAnimation = FunnyAnimations(rootview: self.view)
+        self.squaresAnimation = FunnyAnimations(rootview: self.view)
+        
+        self.allShapesAnimation.appendParticles(from:
+            [.circle,.triangle,.square], size: 30, colors: [color1,color2,color5,color6])
+        
+        self.trianglesAnimation.appendParticles(from: [.triangle], size: 30, colors: [color1,color2,color3])
+        
+        self.circlesAnimation.appendParticles(from: [.circle], size: 30, colors: [color5,color6,color7])
+        
+        self.squaresAnimation.appendParticles(from: [.square], size: 30, colors: [color1,color2,color3])
+        
+        self.bitmapsAnimation.appendParticles(from: [heartIcon,likeIcon])
+        
         //self.view.backgroundColor = UIColor(red: 1, green: 55 / 255, blue: 93 / 255, alpha: 1)
          self.view.backgroundColor = UIColor(red: 53 / 255, green: 71 / 255, blue: 125 / 255, alpha: 1)
-        self.funnyAnimation = FunnyAnimations(rootview: self.view)
-        self.funnyAnimation2 = FunnyAnimations(rootview: self.view)
-        let shapes:[FunnyAnimations.Shape] = [.circle,.square,.triangle]
-        let colors:[UIColor] = [UIColor.red,UIColor.green,UIColor.blue]
-        self.funnyAnimation2.appendParticles(from: shapes, size: 20, colors: [
-            color5,
-            color6,
-            color7
-            ])
-        self.funnyAnimation.appendParticles(from: [likeIcon,heartIcon])
+        
         
         // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func pressButtonAction(_ sender : UIButton){
-        //self.funnyAnimation.startWaveRain(total: 5, direction: .leftToRight, sizeVariation: 0.5)
-        //self.funnyAnimation.startWaveRain(total: 5, direction: .rightToLeft, sizeVariation: 0.5)
-        self.funnyAnimation2.startWaveRain(total: 50, direction: .topToDown, sizeVariation: 0.5, randomRotation: true)
-        //self.funnyAnimation.startWaveRain(total: 5, direction: .downToTop, sizeVariation: 0.5)
-        self.funnyAnimation.startWave(from: sender, total: 20, direction: .downToTop, sizeVariation: 0.5, randomRotation: false)
+    
+
+    
+    @IBAction func wabeToDownAllShapes(_ sender : UIView){
+        self.allShapesAnimation.startWave(from: sender, total: 20, direction: .toDown, sizeVariation: 0.5, randomRotation: true)
+    }
+    
+    @IBAction func wabeToRightTriangles(_ sender : UIView){
+        self.trianglesAnimation.startWave(from: sender, total: 20, direction: .toRight, sizeVariation: 0.5, randomRotation: true)
+    }
+    
+    @IBAction func wabeToLeftCircles(_ sender : UIView){
+        self.circlesAnimation.startWave(from: sender, total: 20, direction: .toLeft, sizeVariation: 0.5, randomRotation: true)
+    }
+    
+    @IBAction func wabeToTopBitmaps(_ sender : UIView){
+        self.bitmapsAnimation.startWave(from: sender, total: 20, direction: .toTop, sizeVariation: 0.5, randomRotation: false)
+    }
+    
+    @IBAction func rainToDownAllShapes(_ sender:Any){
+        self.allShapesAnimation.startWaveRain(total: 30, direction: .toDown, sizeVariation: 0.5, randomRotation: true)
+    }
+    
+    @IBAction func rainToLeftCirclesShapes(_ sender:Any){
+        self.circlesAnimation.startWaveRain(total: 30, direction: .toLeft, sizeVariation: 0.5, randomRotation: true)
+    }
+    
+    @IBAction func rainToRightSquaresShapes(_ sender:Any){
+        self.squaresAnimation.startWaveRain(total: 30, direction: .toRight, sizeVariation: 0.5, randomRotation: true)
+    }
+    
+    @IBAction func rainToTopBitmaps(_ sender:Any){
+        self.bitmapsAnimation.startWaveRain(total: 20, direction: .toTop, sizeVariation: 0.3, randomRotation: false)
+    }
+    
+    @IBAction func rainAllDirections(_ sender:Any){
+        self.allShapesAnimation.startWaveRain(total: 10, direction: .toDown, sizeVariation: 0.5, randomRotation: true)
+        self.allShapesAnimation.startWaveRain(total: 10, direction: .toTop, sizeVariation: 0.5, randomRotation: true)
+        self.allShapesAnimation.startWaveRain(total: 10, direction: .toLeft, sizeVariation: 0.5, randomRotation: true)
+        self.allShapesAnimation.startWaveRain(total: 10, direction: .toRight, sizeVariation: 0.5, randomRotation: true)
     }
     
     

@@ -21,18 +21,146 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DX-Qa-CXs">
-                                <rect key="frame" x="164.5" y="318.5" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tdu-Dt-rV0">
+                                <rect key="frame" x="88" y="248.5" width="199" height="170"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-j0-ijt">
+                                        <rect key="frame" x="0.0" y="0.0" width="199" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Rain toDown All Shapes">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rainToDownAllShapes:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="no8-Ls-taW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAE-iH-8gv">
+                                        <rect key="frame" x="0.0" y="35" width="199" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Rain toTop Bitmaps">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rainToTopBitmaps:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="J4y-Gz-wgu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0l-BF-Ckt">
+                                        <rect key="frame" x="0.0" y="70" width="199" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Rain toRight Squares Shapes">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rainToRightSquaresShapes:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mPT-Lf-wyQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1w7-ql-w2v">
+                                        <rect key="frame" x="0.0" y="105" width="199" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Rain toLeft Circles Shapes">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rainToLeftCirclesShapes:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="HK6-1u-hD4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hN-Wu-vbo">
+                                        <rect key="frame" x="0.0" y="140" width="199" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Rain AllDirections">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="rainAllDirections:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2ql-uW-eUb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5PG-p5-gay">
+                                <rect key="frame" x="172.5" y="637" width="30" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Tap">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
-                                    <action selector="pressButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Hhv-es-kqP"/>
+                                    <action selector="wabeToTopBitmaps:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7h2-EF-cNE"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me7-r2-5xK">
+                                <rect key="frame" x="345" y="418.5" width="30" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Tap">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="wabeToLeftCircles:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="BBc-j5-RBY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvB-8m-7Wh">
+                                <rect key="frame" x="0.0" y="218.5" width="30" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Tap">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="wabeToRightTriangles:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4nd-Ff-36l"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMM-UH-PpO">
+                                <rect key="frame" x="172.5" y="20" width="30" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Tap">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="wabeToDownAllShapes:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="8HT-yA-lby"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wabe toLeft Circle Shapes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOl-f8-8bG">
+                                <rect key="frame" x="172" y="448.5" width="203" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wabe toRight Triangles Shapes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hze-Jt-NUo">
+                                <rect key="frame" x="0.0" y="198" width="238.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wabe toTop Bitmaps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSI-zM-tRq">
+                                <rect key="frame" x="109" y="616.5" width="157" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wabe toDown all shapes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLa-vS-Trq">
+                                <rect key="frame" x="94" y="50" width="187.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1DX-Qa-CXs" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="LO7-bb-vBc"/>
-                            <constraint firstItem="1DX-Qa-CXs" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="qw3-62-QEW"/>
+                            <constraint firstItem="zvB-8m-7Wh" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="1cz-3G-48n"/>
+                            <constraint firstItem="Tdu-Dt-rV0" firstAttribute="top" secondItem="zvB-8m-7Wh" secondAttribute="bottom" id="7Nh-5o-NJp"/>
+                            <constraint firstAttribute="trailing" secondItem="zOl-f8-8bG" secondAttribute="trailing" id="8Kn-LK-Ow8"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="5PG-p5-gay" secondAttribute="bottom" id="9KY-1V-hjc"/>
+                            <constraint firstItem="5PG-p5-gay" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Ap1-c3-ng4"/>
+                            <constraint firstItem="iLa-vS-Trq" firstAttribute="top" secondItem="WMM-UH-PpO" secondAttribute="bottom" id="F8w-Bn-W7D"/>
+                            <constraint firstItem="aSI-zM-tRq" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="LcX-lk-Gki"/>
+                            <constraint firstItem="5PG-p5-gay" firstAttribute="top" secondItem="aSI-zM-tRq" secondAttribute="bottom" id="OKB-7F-WGC"/>
+                            <constraint firstItem="Me7-r2-5xK" firstAttribute="top" secondItem="Tdu-Dt-rV0" secondAttribute="bottom" id="VeC-U4-9Ao"/>
+                            <constraint firstItem="Tdu-Dt-rV0" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Z2O-6m-9S7"/>
+                            <constraint firstItem="WMM-UH-PpO" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="ZkZ-BJ-eXl"/>
+                            <constraint firstItem="Hze-Jt-NUo" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="eZc-HA-hpx"/>
+                            <constraint firstItem="iLa-vS-Trq" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="gpF-Cn-ur0"/>
+                            <constraint firstItem="Tdu-Dt-rV0" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="iJy-hb-RMj"/>
+                            <constraint firstItem="zvB-8m-7Wh" firstAttribute="top" secondItem="Hze-Jt-NUo" secondAttribute="bottom" id="l26-Ab-YBz"/>
+                            <constraint firstAttribute="trailing" secondItem="Me7-r2-5xK" secondAttribute="trailing" id="oX7-fP-who"/>
+                            <constraint firstItem="zOl-f8-8bG" firstAttribute="top" secondItem="Me7-r2-5xK" secondAttribute="bottom" id="skN-rW-yyG"/>
+                            <constraint firstItem="WMM-UH-PpO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="tAq-R5-ecB"/>
                         </constraints>
                     </view>
                 </viewController>
