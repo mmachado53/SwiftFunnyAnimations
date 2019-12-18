@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		498B02032166CF26D0E64A9A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		498B02032166CF26D0E64A9A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4F47DB2542086CF60FF15AEE /* Pods_SwiftFunnyAnimations_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFunnyAnimations_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56299646BF82C7AD750F7A3C /* Pods-SwiftFunnyAnimations_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFunnyAnimations_Tests.release.xcconfig"; path = "Target Support Files/Pods-SwiftFunnyAnimations_Tests/Pods-SwiftFunnyAnimations_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* SwiftFunnyAnimations_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftFunnyAnimations_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,12 +41,12 @@
 		607FACE51AFB9204008FA782 /* SwiftFunnyAnimations_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftFunnyAnimations_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		6549708591C5F31F56C01320 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		6549708591C5F31F56C01320 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6B74D0F5756BAD9A60464C8A /* Pods-SwiftFunnyAnimations_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFunnyAnimations_Example.debug.xcconfig"; path = "Target Support Files/Pods-SwiftFunnyAnimations_Example/Pods-SwiftFunnyAnimations_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B51B54B1F01C6F7396E3E852 /* Pods-SwiftFunnyAnimations_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFunnyAnimations_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftFunnyAnimations_Tests/Pods-SwiftFunnyAnimations_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D3803B78DC89718B38172E9D /* Pods_SwiftFunnyAnimations_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFunnyAnimations_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFE00AD2A0AB32828D2A579B /* Pods-SwiftFunnyAnimations_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFunnyAnimations_Example.release.xcconfig"; path = "Target Support Files/Pods-SwiftFunnyAnimations_Example/Pods-SwiftFunnyAnimations_Example.release.xcconfig"; sourceTree = "<group>"; };
-		E5C9230D7031340A9A37AFCD /* SwiftFunnyAnimations.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = SwiftFunnyAnimations.podspec; path = ../SwiftFunnyAnimations.podspec; sourceTree = "<group>"; };
+		E5C9230D7031340A9A37AFCD /* SwiftFunnyAnimations.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwiftFunnyAnimations.podspec; path = ../SwiftFunnyAnimations.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +147,6 @@
 				B51B54B1F01C6F7396E3E852 /* Pods-SwiftFunnyAnimations_Tests.debug.xcconfig */,
 				56299646BF82C7AD750F7A3C /* Pods-SwiftFunnyAnimations_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
